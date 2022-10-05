@@ -17,14 +17,16 @@ variable "additional_tags" {
 
 variable "private_subnets" {
   type = map(pbject({
-    cidr_block = string
+    cidr_block        = string
     availability_zone = string
+    name              = string
   }))
 }
 
 variable "public_subnets" {
   type = map(pbject({
-    cidr_block = string
+    cidr_block        = string
     availability_zone = string
+    name              = string
   }))
 }

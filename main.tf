@@ -22,7 +22,7 @@ resource "aws_internet_gateway" "this" {
 }
 
 resource "aws_route" "internet_access" {
-  count  = length(var.public_subnets) > 0 ? 1 : 0
+  count                  = length(var.public_subnets) > 0 ? 1 : 0
   route_table_id         = aws_vpc.this.main_route_table_id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.this[0].id
@@ -36,7 +36,8 @@ resource "aws_subnet" "private" {
   tags = merge(
     var.additional_tags,
     {
-      created-by = "iac-tf"
+      created-by = "iac-tf",
+      Name       = each.value.name
     },
   )
 }
@@ -49,7 +50,8 @@ resource "aws_subnet" "public" {
   tags = merge(
     var.additional_tags,
     {
-      created-by = "iac-tf"
+      created-by = "iac-tf",
+      Name       = each.value.name
     },
   )
 }
