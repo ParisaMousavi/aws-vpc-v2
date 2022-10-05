@@ -15,6 +15,16 @@ variable "additional_tags" {
   type    = map(string)
 }
 
-variable "with_internet_gateway" {
-  type = bool
+variable "private_subnets" {
+  type = map(pbject({
+    cidr_block = string
+    availability_zone = string
+  }))
+}
+
+variable "public_subnets" {
+  type = map(pbject({
+    cidr_block = string
+    availability_zone = string
+  }))
 }
